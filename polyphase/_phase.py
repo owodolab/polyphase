@@ -363,8 +363,13 @@ def _parcompute(f, dimension, meshsize,**kwargs):
         print('Total of {} simplices in the convex hull'.format(len(simplices)))
         
     lap = time.time()
+#    if verbose:
+#        print('{} is computed at {:.2f}s'.format(_method,lap-since))
+
     if verbose:
-        print('{} is computed at {:.2f}s'.format(_method,lap-since))
+        method_name = getattr(f, "__name__", str(f))
+        print(f"{method_name} is computed at {lap - since:.2f}s")
+
 
     thresh_scale = kwargs.get('thresh_scale',1.25)
     thresh = thresh_scale*euclidean(grid[:,0],grid[:,1])
